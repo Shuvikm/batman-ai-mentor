@@ -1,0 +1,330 @@
+/* Batman-themed Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Batman Title Font */
+.batman-title {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-shadow: 
+    0 0 10px #fbbf24,
+    0 0 20px #fbbf24,
+    0 0 30px #fbbf24,
+    0 0 40px #fbbf24;
+  animation: glow-pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  from {
+    text-shadow: 
+      0 0 10px #fbbf24,
+      0 0 20px #fbbf24,
+      0 0 30px #fbbf24,
+      0 0 40px #fbbf24;
+  }
+  to {
+    text-shadow: 
+      0 0 5px #fbbf24,
+      0 0 10px #fbbf24,
+      0 0 15px #fbbf24,
+      0 0 20px #fbbf24;
+  }
+}
+
+/* Loading Animation */
+.batman-loading {
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.batman-symbol {
+  animation: rotate360 3s linear infinite;
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Comic Book Panel Effects */
+.comic-panel {
+  border: 3px solid #fbbf24;
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(31,41,55,0.9));
+  box-shadow: 
+    0 0 20px rgba(251,191,36,0.3),
+    inset 0 0 20px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.comic-panel::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #fbbf24, transparent, #fbbf24);
+  z-index: -1;
+  border-radius: 15px;
+  animation: border-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes border-glow {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+/* Button Styles */
+.batman-button {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.batman-button:hover {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(251,191,36,0.4);
+}
+
+.batman-button:active {
+  transform: translateY(0);
+}
+
+/* Input Styles */
+.batman-input {
+  background: rgba(0,0,0,0.8);
+  border: 2px solid #374151;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.batman-input:focus {
+  border-color: #fbbf24;
+  box-shadow: 0 0 20px rgba(251,191,36,0.3);
+  background: rgba(0,0,0,0.9);
+}
+
+.batman-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Form Styles */
+.auth-form {
+  background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(31,41,55,0.95));
+  border: 2px solid #fbbf24;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.8),
+    0 0 40px rgba(251,191,36,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+  animation: slide-in 2s ease-in-out infinite;
+}
+
+@keyframes slide-in {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
+}
+
+/* Dashboard Styles */
+.dashboard-card {
+  background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(31,41,55,0.8));
+  border: 1px solid #fbbf24;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(251,191,36,0.3);
+  border-color: #f59e0b;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+  animation: color-shift 3s ease-in-out infinite;
+}
+
+@keyframes color-shift {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Chat Interface */
+.chat-bubble {
+  background: linear-gradient(135deg, #1f2937, #111827);
+  border: 1px solid #fbbf24;
+  border-radius: 20px 20px 20px 5px;
+  position: relative;
+}
+
+.chat-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right-color: #1f2937;
+  border-bottom: 0;
+  margin-bottom: -8px;
+}
+
+.user-bubble {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 20px 20px 5px 20px;
+  color: #000;
+}
+
+.user-bubble::after {
+  right: -8px;
+  left: auto;
+  border-left-color: #fbbf24;
+  border-right: 0;
+}
+
+/* Progress Bars */
+.progress-bar {
+  background: #374151;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .batman-title {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  .auth-form {
+    margin: 1rem;
+    border-radius: 15px;
+  }
+  
+  .dashboard-card {
+    margin: 0.5rem;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #fbbf24, #f59e0b);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #f59e0b, #fbbf24);
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
