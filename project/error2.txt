@@ -1,0 +1,56 @@
+﻿node : file:///C:/Use
+rs/spark/Desktop/batm
+an/project/server/ind
+ex.js:2015
+At line:1 char:1
++ node 
+server/index.js 2>&1 
+| Out-File -FilePath 
+error2.txt -Encoding 
+u ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (file://   
+ /C:/User...r/ind    
+ex.js:2015:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+    let prompt = 
+`Create ${ type } 
+content about 
+"${topic}" for ${ 
+difficulty } level 
+learners. `;
+                  
+^^^^^^
+
+SyntaxError: 
+Unexpected 
+identifier 'Create'
+    at compileSourceT
+extModule (node:inter
+nal/modules/esm/utils
+:338:16)
+    at ModuleLoader.m
+oduleStrategy (node:i
+nternal/modules/esm/t
+ranslators:102:18)
+    at #translate (no
+de:internal/modules/e
+sm/loader:468:12)
+    at ModuleLoader.l
+oadAndTranslate (node
+:internal/modules/esm
+/loader:515:27)
+    at async 
+ModuleJob._link (node
+:internal/modules/esm
+/module_job:115:19)
+
+Node.js v22.14.0

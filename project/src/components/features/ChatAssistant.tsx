@@ -95,7 +95,7 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
     try {
       // First try enhanced chat with search
       const aiResult = await chatService.sendEnhancedMessage(currentInput);
-      
+
       if (aiResult.success) {
         const aiResponse: Message = {
           id: aiResult.botMessage?.id || (Date.now() + 1).toString(),
@@ -108,7 +108,7 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
       } else {
         // Fallback to regular chat
         const fallbackResult = await chatService.sendMessage(currentInput);
-        
+
         if (fallbackResult.success) {
           const aiResponse: Message = {
             id: fallbackResult.messageId || (Date.now() + 1).toString(),
@@ -128,7 +128,7 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
           };
 
           setMessages(prev => [...prev, aiResponse]);
-          
+
           // Save fallback response
           try {
             await chatService.saveMessage(user.id, {
@@ -164,9 +164,9 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
       "Your dedication to learning reminds me of Batman's commitment to justice. Here's my guidance...",
       "Even the Dark Knight had to learn his skills. Let me help you on your journey...",
     ];
-    
-    return responses[Math.floor(Math.random() * responses.length)] + 
-           " This is a comprehensive response that would address your specific learning needs and provide actionable guidance for your educational journey.";
+
+    return responses[Math.floor(Math.random() * responses.length)] +
+      " This is a comprehensive response that would address your specific learning needs and provide actionable guidance for your educational journey.";
   };
 
   // Search handlers
@@ -185,7 +185,7 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
 
     try {
       setIsTyping(true);
-      
+
       // Add a searching message
       const searchingMessage: Message = {
         id: Date.now().toString(),
@@ -194,13 +194,13 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
         timestamp: new Date()
       };
       setMessages(prev => [...prev, searchingMessage]);
-      
+
       if (type === 'youtube') {
         const result = await searchService.searchYouTube(inputMessage);
         if (result.success && result.data.videos?.length > 0) {
           setSearchResults((prev: any) => ({ ...prev, youtube: result.data }));
           setShowSearchResults(true);
-          
+
           // Show success message with results
           const successMessage: Message = {
             id: (Date.now() + 1).toString(),
@@ -223,7 +223,7 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
         if (result.success && result.data.articles?.length > 0) {
           setSearchResults((prev: any) => ({ ...prev, news: result.data }));
           setShowSearchResults(true);
-          
+
           // Show success message with results
           const successMessage: Message = {
             id: (Date.now() + 1).toString(),
@@ -244,7 +244,7 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
       }
     } catch (error) {
       console.error(`Error searching ${type}:`, error);
-      
+
       // Show error message
       const errorMessage: Message = {
         id: (Date.now() + 2).toString(),
@@ -292,40 +292,36 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex items-start space-x-3 ${
-                message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''
-              }`}
+              className={`flex items-start space-x-3 ${message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''
+                }`}
             >
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                message.type === 'user' 
-                  ? 'bg-yellow-400' 
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${message.type === 'user'
+                  ? 'bg-yellow-400'
                   : 'bg-gray-700'
-              }`}>
+                }`}>
                 {message.type === 'user' ? (
                   <User className="w-5 h-5 text-black" />
                 ) : (
                   <Bot className="w-5 h-5 text-yellow-400" />
                 )}
               </div>
-              
-              <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
-                message.type === 'user'
+
+              <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${message.type === 'user'
                   ? 'user-bubble'
                   : 'chat-bubble text-white'
-              }`}>
-                <p className="text-sm leading-relaxed">{message.content}</p>
-                <p className={`text-xs mt-2 ${
-                  message.type === 'user' ? 'text-gray-800' : 'text-gray-400'
                 }`}>
-                  {message.timestamp.toLocaleTimeString([], { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
+                <p className="text-sm leading-relaxed">{message.content}</p>
+                <p className={`text-xs mt-2 ${message.type === 'user' ? 'text-gray-800' : 'text-gray-400'
+                  }`}>
+                  {message.timestamp.toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
                   })}
                 </p>
               </div>
             </div>
           ))}
-          
+
           {isTyping && (
             <div className="flex items-start space-x-3">
               <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
@@ -340,7 +336,7 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
               </div>
             </div>
           )}
-          
+
           <div ref={messagesEndRef} />
         </div>
 
@@ -399,25 +395,73 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
             <div className="space-y-3">
               {searchResults.youtube && searchResults.youtube.videos?.length > 0 && (
                 <div className="bg-red-900/20 border border-red-700/30 rounded-lg p-3">
-                  <p className="text-sm text-red-400 font-semibold mb-2 flex items-center gap-2">
+                  <p className="text-sm text-red-400 font-semibold mb-3 flex items-center gap-2">
                     <Youtube className="w-4 h-4" />
                     YouTube Videos ({searchResults.youtube.videos.length} found)
                   </p>
-                  {searchResults.youtube.videos.slice(0, 5).map((video: any, index: number) => (
-                    <div key={index} className="mb-2 pb-2 border-b border-red-700/20 last:border-b-0">
-                      <a 
-                        href={video.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="text-sm text-gray-300 hover:text-yellow-400 transition-colors block font-medium"
-                      >
-                        🎥 {video.title}
-                      </a>
-                      <p className="text-xs text-gray-400 mt-1">
-                        Channel: {video.channel} • <span className="text-red-400">Watch on YouTube</span>
-                      </p>
-                    </div>
-                  ))}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {searchResults.youtube.videos.slice(0, 4).map((video: any, index: number) => {
+                      // Extract video ID from URL
+                      const videoIdMatch = video.url?.match(/[?&]v=([^&]+)/) || video.id;
+                      const videoId = typeof videoIdMatch === 'string' ? videoIdMatch : (videoIdMatch?.[1] || video.id);
+
+                      return (
+                        <div key={index} className="bg-gray-900/50 p-3 rounded-lg">
+                          <div className="relative group cursor-pointer">
+                            {/* YouTube Thumbnail with Play Button */}
+                            <div className="relative rounded-lg overflow-hidden bg-black">
+                              <img
+                                src={video.thumbnail || `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
+                                alt={video.title}
+                                className="w-full h-40 object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                                onError={(e) => {
+                                  // Fallback if thumbnail fails
+                                  e.currentTarget.src = `https://via.placeholder.com/320x180/1a1a1a/ffffff?text=${encodeURIComponent(video.title.substring(0, 20))}`;
+                                }}
+                              />
+
+                              {/* Play Button Overlay */}
+                              <a
+                                href={`https://www.youtube.com/watch?v=${videoId}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-all"
+                              >
+                                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                                  <svg className="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                                  </svg>
+                                </div>
+                              </a>
+                            </div>
+
+                            {/* Video Info */}
+                            <div className="mt-2">
+                              <a
+                                href={`https://www.youtube.com/watch?v=${videoId}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-gray-200 hover:text-yellow-400 transition-colors line-clamp-2 block"
+                              >
+                                {video.title}
+                              </a>
+                              <p className="text-xs text-gray-400 mt-1">
+                                {video.channel || 'YouTube'}
+                              </p>
+                              <p className="text-xs text-red-400 mt-1">
+                                ▶ Click to watch
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {searchResults.youtube.videos.length > 4 && (
+                    <p className="text-xs text-gray-400 mt-3 text-center">
+                      Showing 4 of {searchResults.youtube.videos.length} videos
+                    </p>
+                  )}
                 </div>
               )}
               {searchResults.news && searchResults.news.articles?.length > 0 && (
@@ -428,10 +472,10 @@ const ChatAssistant: React.FC<ChatAssistantProps> = ({ user }) => {
                   </p>
                   {searchResults.news.articles.slice(0, 5).map((article: any, index: number) => (
                     <div key={index} className="mb-2 pb-2 border-b border-blue-700/20 last:border-b-0">
-                      <a 
-                        href={article.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-sm text-gray-300 hover:text-yellow-400 transition-colors block font-medium"
                       >
                         📰 {article.title}

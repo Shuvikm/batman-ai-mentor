@@ -1,0 +1,16 @@
+{
+  "name": "batman-ai-mentor-api",
+  "version": "1.0.0",
+  "description": "Batman AI Mentor Backend API",
+  "main": "server/index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "build": "echo 'No build step required for backend'"
+  }
+}

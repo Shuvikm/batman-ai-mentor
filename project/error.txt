@@ -1,0 +1,47 @@
+﻿node : file:///C:/Users/sp
+ark/Desktop/batman/project
+/server/index.js:2015
+At line:1 char:1
++ node server/index.js 
+2>&1 | Out-File -FilePath 
+error.txt -Encoding ut ...
++ 
+~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (f  
+  ile:///C:/User...r/in   
+ dex.js:2015:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+    let prompt = `Create 
+${ type } content about 
+"${topic}" for ${ 
+difficulty } level 
+learners. `;
+                  ^^^^^^
+
+SyntaxError: Unexpected 
+identifier 'Create'
+    at 
+compileSourceTextModule (n
+ode:internal/modules/esm/u
+tils:338:16)
+    at ModuleLoader.module
+Strategy (node:internal/mo
+dules/esm/translators:102:
+18)
+    at #translate (node:in
+ternal/modules/esm/loader:
+468:12)
+    at ModuleLoader.loadAn
+dTranslate (node:internal/
+modules/esm/loader:515:27)
+    at async 
+ModuleJob._link (node:inte
+rnal/modules/esm/module_jo
+b:115:19)
+
+Node.js v22.14.0
